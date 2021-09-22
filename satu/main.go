@@ -13,7 +13,7 @@ var nama, durasi, name string
 var arr1 []string
 var arr [][]string
 var idgame int
-var biaya, avg float64
+var biaya float64
 
 // [
 // 	["CODM","5.0"],["ML","4.4"]
@@ -89,6 +89,7 @@ func main() {
 			})
 
 		case 4:
+			var avg float64
 			for i := 0; i < len(arr); i++ {
 				var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
 				if err == nil {
@@ -124,22 +125,23 @@ func main() {
 			}
 
 		case 6:
+			var total float64
 			fmt.Println("Customer dengan durasi kurang dari rata rata")
 			fmt.Println("id \tNama \t\tDurasi \t\tBiaya")
 			for i := 0; i < len(arr); i++ {
 
 				var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
 				if err == nil {
-					avg += (fltrating)
+					total += fltrating
 					biaya = (fltrating * 1000) * 60
 				}
 
 				var y float64 = float64(len(arr))
-				var o float64 = avg / y
+				var o float64 = total / y
 				var dur, er = strconv.ParseFloat(arr[i][1], 64)
 				if er == nil {
-					var x int = int(dur)
-					var z int = int(o)
+					var x float64 = dur
+					var z float64 = o
 					if x < z {
 						fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
 					}
