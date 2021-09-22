@@ -96,9 +96,9 @@ func main() {
 				}
 
 			}
-			fmt.Println(avg)
+
 			var y float64 = float64(len(arr))
-			fmt.Println(y)
+
 			var o float64 = avg / y
 			fmt.Printf("\t%.1f jam\n", o)
 
