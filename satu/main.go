@@ -69,12 +69,13 @@ func main() {
 			for i := 0; i < len(arr); i++ {
 				var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
 				if err == nil {
-					biaya = (fltrating*1000)*60
+					biaya = (fltrating * 1000) * 60
 				}
 				fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
 			}
 
-			
+			fmt.Println("Jumlah data user:", len(arr))
+
 		case 2:
 			addData()
 			fmt.Print(arr1)
@@ -86,20 +87,21 @@ func main() {
 			sort.Slice(arr[:], func(i, j int) bool {
 				return arr[i][1] > arr[j][1]
 			})
-		
-			
+
 		case 4:
 			for i := 0; i < len(arr); i++ {
 				var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
 				if err == nil {
-					avg += (fltrating)
+					avg += fltrating
 				}
-				
+
 			}
+			fmt.Println(avg)
 			var y float64 = float64(len(arr))
-			var o float64 = avg/y
-			fmt.Printf("\t%f\n", o)
-			
+			fmt.Println(y)
+			var o float64 = avg / y
+			fmt.Printf("\t%.1f jam\n", o)
+
 		case 5:
 			fmt.Println("3 Customer dengan durasi terpendek")
 			fmt.Println("id \tNama \t\tDurasi \t\tBiaya")
@@ -107,44 +109,45 @@ func main() {
 				for i := 3; i >= 1; i-- {
 					var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
 					if err == nil {
-						biaya = (fltrating*1000)*60
+						biaya = (fltrating * 1000) * 60
 					}
 					fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
 				}
 			} else {
-				for i := len(arr)-1; i >= 1; i-- {
+				for i := len(arr) - 1; i >= 1; i-- {
 					var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
 					if err == nil {
-						biaya = (fltrating*1000)*60
+						biaya = (fltrating * 1000) * 60
 					}
 					fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
 				}
 			}
-			
+
 		case 6:
 			fmt.Println("Customer dengan durasi kurang dari rata rata")
 			fmt.Println("id \tNama \t\tDurasi \t\tBiaya")
 			for i := 0; i < len(arr); i++ {
-				
+
 				var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
 				if err == nil {
 					avg += (fltrating)
-					biaya = (fltrating*1000)*60
+					biaya = (fltrating * 1000) * 60
 				}
 
 				var y float64 = float64(len(arr))
-				var o float64 = avg/y
+				var o float64 = avg / y
 				var dur, er = strconv.ParseFloat(arr[i][1], 64)
 				if er == nil {
 					var x int = int(dur)
 					var z int = int(o)
-					if x < z  {
-						fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))	
+					if x < z {
+						fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
 					}
 				}
 			}
 		case 7:
 			fmt.Print("Bye")
+			x = false
 		default:
 			fmt.Print("Pilihan tidak tersedia")
 		}
