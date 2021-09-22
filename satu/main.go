@@ -12,7 +12,7 @@ import (
 var nama, durasi, name string
 var arr1 []string
 var arr [][]string
-var idgame int
+var id int
 var biaya float64
 
 // [
@@ -74,16 +74,14 @@ func main() {
 				fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
 			}
 
-			fmt.Println("Jumlah data user:", len(arr))
-
 		case 2:
 			addData()
 			fmt.Print(arr1)
 		case 3:
 			fmt.Print("\nMasukkan ID game yang akan dihapus: ")
-			fmt.Scan(&idgame)
+			fmt.Scan(&id)
 
-			deleteData(idgame)
+			deleteData(id)
 			sort.Slice(arr[:], func(i, j int) bool {
 				return arr[i][1] > arr[j][1]
 			})
@@ -91,9 +89,9 @@ func main() {
 		case 4:
 			var avg float64
 			for i := 0; i < len(arr); i++ {
-				var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
+				var durasi, err = strconv.ParseFloat(arr[i][1], 64)
 				if err == nil {
-					avg += fltrating
+					avg += durasi
 				}
 
 			}
@@ -106,22 +104,12 @@ func main() {
 		case 5:
 			fmt.Println("3 Customer dengan durasi terpendek")
 			fmt.Println("id \tNama \t\tDurasi \t\tBiaya")
-			if len(arr) >= 3 {
-				for i := 3; i >= 1; i-- {
-					var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
-					if err == nil {
-						biaya = (fltrating * 1000) * 60
-					}
-					fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
+			for i := 3; i >= 1; i-- {
+				var durasi, err = strconv.ParseFloat(arr[i][1], 64)
+				if err == nil {
+					biaya = (durasi * 1000) * 60
 				}
-			} else {
-				for i := len(arr) - 1; i >= 1; i-- {
-					var fltrating, err = strconv.ParseFloat(arr[i][1], 64)
-					if err == nil {
-						biaya = (fltrating * 1000) * 60
-					}
-					fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
-				}
+				fmt.Printf("%d \t%s \t\t%s \t\t%s\n", i+1, arr[i][0], arr[i][1], FormatRupiah(biaya))
 			}
 
 		case 6:
